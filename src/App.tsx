@@ -8,7 +8,7 @@ const RoutesData = [
   {
     name: "By First Character",
     element: ByFirstChar,
-    path: "/first-char",
+    path: "/",
   },
   {
     name: "By Name",
