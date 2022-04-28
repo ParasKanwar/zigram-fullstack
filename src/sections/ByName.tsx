@@ -8,13 +8,20 @@ export default function ByFirstName() {
   const [cocktails, setCocktails] = useState([]);
   const [loading, setLoading] = useState(false);
   const cocktailDbRef = React.useRef<CocktailDb>(CocktailDb.getInstance());
+  const timeoutRef = React.useRef<any>(null);
   useEffect(() => {
     if (selectedChar !== "") {
-      setLoading(true);
-      cocktailDbRef.current
-        .byName(selectedChar)
-        .then((data) => setCocktails(data))
-        .finally(() => setLoading(false));
+      if(timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      timeoutRef.current = setTimeout(()=>{
+          setLoading(true);
+          cocktailDbRef.current
+            .byName(selectedChar)
+            .then((data) => setCocktails(data))
+            .finally(() => setLoading(false));
+      }, 300);
     } else {
       setCocktails([]);
     }
