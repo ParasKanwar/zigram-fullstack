@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 interface Props {
   height: number;
@@ -27,13 +28,14 @@ function Header(props: Props) {
     >
       {props.items.map((val, i) => {
         return (
-          <div
+          <Button
             key={val.name}
             onClick={() => navigate(val.path)}
-            style={{ height: "100%", textAlign: "center", borderRadius: "10%", padding: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0px 10px' }}
+            variant="outlined"
+            style={{ margin: '0px 10px' }}
           >
             {val.name}
-          </div>
+          </Button>
         );
       })}
     </div>
